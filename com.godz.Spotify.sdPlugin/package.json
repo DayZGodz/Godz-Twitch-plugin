@@ -1,0 +1,44 @@
+{
+  "name": "com.godz.spotify.sdplugin",
+  "version": "2.0.0",
+  "description": "Professional Spotify controller for Stream Deck with modern UI and full device support",
+  "main": "plugin/index.js",
+  "author": "Godz Development",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/godz/stream-deck-spotify"
+  },
+  "keywords": [
+    "stream-deck",
+    "spotify",
+    "plugin",
+    "controller"
+  ],
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "dependencies": {
+    "https": "builtin",
+    "fs": "builtin",
+    "os": "builtin",
+    "path": "builtin"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "server": "node server-simple.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "streamDeckConfig": {
+    "name": "Spotify Controller Pro",
+    "version": "2.0.0",
+    "author": "Godz",
+    "description": "Control Spotify from your Stream Deck",
+    "icon": "plugin/images/categoryIcon",
+    "uuid": "com.godz.spotify.sdplugin",
+    "os": [
+      "windows",
+      "macos"
+    ]
+  }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Play/Pause</title>
+    <link rel="stylesheet" href="../utils/spotify-theme.css">
+</head>
+<body>
+    <div class="container fade-in">
+        <h2>▶️ Play/Pause</h2>
+
+        <!-- Device Selection (Enabled only when authenticated) -->
+        <div id="device-section" style="display: none;">
+            <div class="form-group">
+                <label for="device">Dispositivo de Reprodução</label>
+                <select id="device">
+                    <option value="">Carregando dispositivos...</option>
+                </select>
+                <div class="help-text">Selecione o dispositivo Spotify onde o áudio será tocado</div>
+            </div>
+
+            <button id="refreshBtn" class="secondary">
+                <span>🔄</span> Atualizar Dispositivos
+            </button>
+
+            <hr style="border-color: #444; margin: 16px 0;">
+
+            <div class="form-group">
+                <label for="timeDisplay">Exibição de tempo</label>
+                <select id="timeDisplay">
+                    <option value="elapsed">Tempo decorrido</option>
+                    <option value="remaining">Tempo restante</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 12px;">
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="checkbox" id="showTitle" checked style="width: 18px; height: 18px; accent-color: #1db954;">
+                    Mostrar título
+                </label>
+            </div>
+
+            <div class="form-group" style="margin-top: 12px;">
+                <label for="titleFormat">Formato de exibição</label>
+                <select id="titleFormat">
+                    <option value="title">Título</option>
+                    <option value="title-artist">Título - Artista</option>
+                    <option value="artist">Artista</option>
+                    <option value="artist-title">Artista - Título</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Login Component (Shows only when NOT authenticated) -->
+        <div id="auth-buttons">
+            <div class="auth-container">
+                <button id="login-btn" class="btn btn-primary btn-login">
+                    <span class="icon">🔐</span>
+                    <span class="text">Fazer Login</span>
+                </button>
+                <div class="auth-info">
+                    <p>Clique para autenticação com Spotify</p>
+                </div>
+                <div id="auth-message" class="auth-message"></div>
+            </div>
+        </div>
+
+        <div id="message" class="message info" style="display: none;"></div>
+    </div>
+
+    <!-- Scripts in order: common → auth → login-button → action -->
+    <script src="../utils/common.js"></script>
+    <script src="../utils/auth-manager.js"></script>
+    <script src="../utils/login-button.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

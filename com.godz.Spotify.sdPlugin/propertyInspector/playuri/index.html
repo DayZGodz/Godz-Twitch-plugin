@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Reproduzir por URI</title>
+    <link rel="stylesheet" href="../utils/spotify-theme.css">
+</head>
+<body>
+    <div class="container fade-in">
+        <h2>🔗 Reproduzir por URI</h2>
+
+        <div id="device-section" style="display: none;">
+            <div class="form-group">
+                <label for="device">Dispositivo de Reprodução</label>
+                <select id="device">
+                    <option value="">Carregando dispositivos...</option>
+                </select>
+            </div>
+            <button id="refreshBtn" class="secondary">🔄 Atualizar Dispositivos</button>
+
+            <hr style="border-color: #444; margin: 16px 0;">
+
+            <div class="form-group">
+                <label for="uri">URI do Spotify</label>
+                <input type="text" id="uri" placeholder="spotify:track:xxxxxxxxxxxxxxxxxxxx"
+                    style="width:100%; padding:8px; background:#2a2a2a; border:1px solid #444; border-radius:4px; color:#fff; font-size:12px;">
+                <div class="help-text">Cole aqui o URI do Spotify (música, álbum, artista ou podcast)</div>
+            </div>
+
+            <div class="form-group" style="margin-top: 12px;">
+                <label for="playOption">Opção de Reprodução</label>
+                <select id="playOption">
+                    <option value="play">Reproduzir Agora</option>
+                    <option value="queue">Adicionar à Fila</option>
+                </select>
+            </div>
+
+            <details style="margin-top: 12px; background:#1a1a1a; border-radius:6px; padding:8px;">
+                <summary style="cursor:pointer; color:#aaa; font-size:12px;">Como obter o URI do Spotify?</summary>
+                <ol style="font-size:12px; color:#aaa; padding-left:16px; margin-top:8px; line-height:1.6;">
+                    <li>Clique com o botão direito em uma música no Spotify</li>
+                    <li>Selecione "Compartilhar" &gt; "Copiar URI do Spotify"</li>
+                    <li>Se não aparecer a opção, pressione a tecla ALT no teclado</li>
+                    <li>Formato: <code style="color:#1db954;">spotify:track:xxxxxxxxxxx</code></li>
+                    <li>Opcional: adicione <code style="color:#1db954;">#m:ss</code> para definir tempo inicial</li>
+                </ol>
+            </details>
+        </div>
+
+        <div id="auth-buttons">
+            <div class="auth-container">
+                <button id="login-btn" class="btn btn-primary btn-login">
+                    <span class="icon">🔐</span>
+                    <span class="text">Fazer Login</span>
+                </button>
+                <div class="auth-info">
+                    <p>Clique para autenticação com Spotify</p>
+                </div>
+                <div id="auth-message" class="auth-message"></div>
+            </div>
+        </div>
+
+        <div id="message" class="message info" style="display: none;"></div>
+    </div>
+
+    <script src="../utils/common.js"></script>
+    <script src="../utils/auth-manager.js"></script>
+    <script src="../utils/login-button.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

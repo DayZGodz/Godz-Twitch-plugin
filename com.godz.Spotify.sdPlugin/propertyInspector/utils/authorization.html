@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Authorization - Stream Deck</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1DB954 0%, #1ed760 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1DB954 0%, #1ed760 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #191414;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: #f5f5f5;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #1DB954;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.1);
+        }
+
+        .help-text {
+            display: flex;
+            align-items: flex-start;
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .help-text a {
+            color: #1DB954;
+            text-decoration: none;
+            font-weight: 600;
+            white-space: nowrap;
+            margin-left: 5px;
+        }
+
+        .help-text a:hover {
+            text-decoration: underline;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .button-primary {
+            background: #1DB954;
+            color: white;
+        }
+
+        .button-primary:hover {
+            background: #1ed760;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(29, 185, 84, 0.3);
+        }
+
+        .button-primary:active {
+            transform: translateY(0);
+        }
+
+        .button-secondary {
+            background: #f0f0f0;
+            color: #191414;
+        }
+
+        .button-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .error-message {
+            display: none;
+            background: #ffebee;
+            color: #c62828;
+            padding: 12px 14px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            border-left: 4px solid #c62828;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px 30px;
+        }
+
+        .spinner {
+            border: 4px solid #f0f0f0;
+            border-top: 4px solid #1DB954;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎵 Spotify Authorization</h1>
+            <p>Stream Deck Plugin</p>
+        </div>
+
+        <div class="content">
+            <div class="error-message" id="errorMessage"></div>
+
+            <div id="form-section">
+                <div class="help-text">
+                    ℹ️ Você precisa fornecer suas credenciais do Spotify.
+                    <a href="#" id="openDocs" target="_blank">Clique aqui para instruções</a>
+                </div>
+
+                <div class="form-group">
+                    <label for="clientId">Client ID</label>
+                    <input 
+                        type="text" 
+                        id="clientId" 
+                        placeholder="Cole seu Client ID aqui"
+                        autocomplete="off"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="clientSecret">Client Secret</label>
+                    <input 
+                        type="password" 
+                        id="clientSecret" 
+                        placeholder="Cole seu Client Secret aqui"
+                        autocomplete="off"
+                    >
+                </div>
+
+                <div class="button-group">
+                    <button class="button button-primary" id="authorizeBtn">Autorizar</button>
+                    <button class="button button-secondary" id="cancelBtn">Cancelar</button>
+                </div>
+            </div>
+
+            <div class="loading" id="loading-section">
+                <div class="spinner"></div>
+                <p>Autenticando com Spotify...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Referência ao WebSocket da janela pai
+        let $websocket = window.opener.$websocket;
+
+        const clientIdInput = document.getElementById('clientId');
+        const clientSecretInput = document.getElementById('clientSecret');
+        const errorMessage = document.getElementById('errorMessage');
+        const authorizeBtn = document.getElementById('authorizeBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const formSection = document.getElementById('form-section');
+        const loadingSection = document.getElementById('loading-section');
+        const openDocsLink = document.getElementById('openDocs');
+
+        // Link para instruções do Spotify Developer
+        openDocsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            if ($websocket && $websocket.openUrl) {
+                $websocket.openUrl('https://developer.spotify.com/dashboard');
+            } else {
+                window.open('https://developer.spotify.com/dashboard', '_blank');
+            }
+        });
+
+        // Botão Cancelar
+        cancelBtn.addEventListener('click', () => {
+            window.close();
+        });
+
+        // Botão Autorizar
+        authorizeBtn.addEventListener('click', async () => {
+            const clientId = clientIdInput.value.trim();
+            const clientSecret = clientSecretInput.value.trim();
+
+            // Validação
+            if (!clientId || !clientSecret) {
+                showError('Por favor, preencha Client ID e Client Secret');
+                return;
+            }
+
+            if (clientId.length < 10) {
+                showError('Client ID parece inválido');
+                return;
+            }
+
+            if (clientSecret.length < 10) {
+                showError('Client Secret parece inválido');
+                return;
+            }
+
+            // Mostrar loading
+            formSection.style.display = 'none';
+            loadingSection.style.display = 'block';
+
+            try {
+                // Notify parent regardless of Stream Deck globals availability
+                if (!window.opener) {
+                    throw new Error('Janela pai não encontrada');
+                }
+
+                // Save where available (optional)
+                if (window.opener.$globalSettings) {
+                    window.opener.$globalSettings.spotify_client_id = clientId;
+                    window.opener.$globalSettings.spotify_client_secret = clientSecret;
+                    window.opener.$globalSettings.spotify_setup_complete = true;
+                    delete window.opener.$globalSettings.access_token;
+                    delete window.opener.$globalSettings.auth_error;
+                }
+
+                // Required callback for parent flow continuation
+                if (typeof window.opener.$setupSuccessCallback === 'function') {
+                    window.opener.$setupSuccessCallback({
+                        clientId: clientId,
+                        clientSecret: clientSecret
+                    });
+                } else {
+                    throw new Error('Callback de autenticação não encontrado na janela pai');
+                }
+
+                // Fechar janela após sucesso
+                setTimeout(() => {
+                    window.close();
+                }, 500);
+            } catch (err) {
+                loadingSection.style.display = 'none';
+                formSection.style.display = 'block';
+                showError('Erro ao salvar credenciais: ' + err.message);
+            }
+        });
+
+        // Função para mostrar erro
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+        }
+
+        // Focus no primeiro campo ao carregar
+        clientIdInput.focus();
+
+        // Permitir Enter para enviar
+        clientSecretInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                authorizeBtn.click();
+            }
+        });
+    </script>
+</body>
+</html>

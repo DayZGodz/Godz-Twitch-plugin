@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Aumentar Volume</title>
+    <link rel="stylesheet" href="../utils/spotify-theme.css">
+</head>
+<body>
+    <div class="container fade-in">
+        <h2>🔊 Aumentar Volume</h2>
+        
+        <div id="device-section" style="display: none;">
+            <div class="form-group">
+                <label for="device">Dispositivo</label>
+                <select id="device">
+                    <option value="">Carregando...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="increment">Incremento (%)</label>
+                <input type="number" id="increment" min="1" max="100" value="10">
+            </div>
+
+            <button id="refreshBtn" class="secondary">🔄 Atualizar</button>
+        </div>
+
+        <div id="auth-buttons">
+            <div class="auth-container">
+                <button id="login-btn" class="btn btn-primary btn-login">
+                    <span class="icon">🔐</span>
+                    <span class="text">Fazer Login</span>
+                </button>
+                <div class="auth-info">
+                    <p>Clique para autenticação com Spotify</p>
+                </div>
+                <div id="auth-message" class="auth-message"></div>
+            </div>
+        </div>
+
+        <div id="message" class="message info" style="display: none;"></div>
+    </div>
+
+    <script src="../utils/common.js"></script>
+    <script src="../utils/auth-manager.js"></script>
+    <script src="../utils/login-button.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,613 @@
+/* Spotify Dark Theme for Stream Deck Plugin */
+
+:root {
+  --spotify-green: #1DB954;
+  --spotify-light-green: #1ed760;
+  --bg-primary: #191414;
+  --bg-secondary: #282828;
+  --bg-tertiary: #3e3e3e;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --border-color: #404040;
+  --success: #1DB954;
+  --warning: #f0822d;
+  --error: #e22134;
+  --transition: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--spotify-green);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--spotify-light-green);
+}
+
+/* Container */
+.container,
+.sdpi-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: 18px;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+h3 {
+  font-size: 14px;
+}
+
+p {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+/* Form Elements */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: inherit;
+  transition: all var(--transition);
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--spotify-green);
+  background-color: rgba(29, 185, 84, 0.1);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--spotify-green);
+  box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.2);
+  background-color: var(--bg-tertiary);
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  width: 18px;
+  padding: 0;
+  cursor: pointer;
+  accent-color: var(--spotify-green);
+}
+
+/* Buttons */
+button {
+  padding: 10px 16px;
+  background-color: var(--spotify-green);
+  color: var(--text-primary);
+  border: 1px solid transparent;
+  border-radius: 24px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--spotify-light-green);
+  transform: scale(1.05);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.secondary {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+  border-width: 1px;
+}
+
+button.secondary:hover:not(:disabled) {
+  background-color: var(--bg-secondary);
+  border-color: var(--spotify-green);
+}
+
+button.danger {
+  background-color: var(--error);
+}
+
+button.danger:hover:not(:disabled) {
+  background-color: #cc1628;
+}
+
+/* Form Groups */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+  gap: 6px;
+}
+
+.form-group.row {
+  flex-direction: row;
+  align-items: center;
+  align-items: center;
+}
+
+.form-group.row input,
+.form-group.row select {
+  flex: 1;
+}
+
+.form-group.checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-group.checkbox input {
+  width: auto;
+  margin: 0;
+}
+
+.form-group.checkbox label {
+  margin: 0;
+  flex: 1;
+}
+
+/* Helper Text */
+.help-text,
+.hint {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: -4px;
+}
+
+/* Sections */
+.section {
+  border-top: 1px solid var(--border-color);
+  padding-top: 12px;
+  margin-top: 12px;
+}
+
+.section:first-child {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* Device/Playlist Selector */
+.selector-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.selector-card:hover {
+  border-color: var(--spotify-green);
+  background-color: rgba(29, 185, 84, 0.1);
+}
+
+.selector-card.active {
+  border-color: var(--spotify-green);
+  background-color: rgba(29, 185, 84, 0.2);
+}
+
+.selector-card-content {
+  flex: 1;
+}
+
+.selector-card-title {
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.selector-card-subtitle {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.selector-card-badge {
+  display: inline-block;
+  background-color: var(--spotify-green);
+  color: var(--bg-primary);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+/* Loading State */
+.spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: var(--spotify-green);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+button.loading {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-secondary) !important;
+  cursor: wait !important;
+}
+
+/* Messages */
+.message {
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  border-left: 3px solid;
+  margin-bottom: 12px;
+}
+
+.message.info {
+  background-color: rgba(29, 185, 84, 0.1);
+  border-left-color: var(--spotify-green);
+  color: var(--spotify-light-green);
+}
+
+.message.warning {
+  background-color: rgba(240, 130, 45, 0.1);
+  border-left-color: var(--warning);
+  color: var(--warning);
+}
+
+.message.error {
+  background-color: rgba(226, 33, 52, 0.1);
+  border-left-color: var(--error);
+  color: var(--error);
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 12px 0;
+}
+
+/* Badge/Pill */
+.badge {
+  display: inline-block;
+  background-color: var(--spotify-green);
+  color: var(--bg-primary);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.badge.secondary {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 12px;
+}
+
+/* Flex Utilities */
+.flex {
+  display: flex;
+}
+
+.flex.between {
+  justify-content: space-between;
+}
+
+.flex.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.flex.gap-sm {
+  gap: 6px;
+}
+
+.flex.gap-md {
+  gap: 12px;
+}
+
+.flex.gap-lg {
+  gap: 16px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container,
+  .sdpi-wrapper {
+    padding: 12px;
+  }
+
+  button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ========================================
+   Authentication Component Styles
+   ======================================== */
+
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  background-color: rgba(29, 185, 84, 0.1);
+  border: 1px solid var(--spotify-green);
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.auth-status {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-primary);
+  padding: 6px 0;
+  text-align: center;
+}
+
+.btn-login,
+.btn-logout {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 24px;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-login {
+  background-color: var(--spotify-green);
+  color: var(--bg-primary);
+}
+
+.btn-login:hover {
+  background-color: var(--spotify-light-green);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(29, 185, 84, 0.3);
+}
+
+.btn-login:active {
+  transform: translateY(0);
+}
+
+.btn-logout {
+  background-color: var(--error);
+  color: var(--text-primary);
+}
+
+.btn-logout:hover {
+  background-color: #cc1628;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(226, 33, 52, 0.3);
+}
+
+.btn-logout:active {
+  transform: translateY(0);
+}
+
+.btn-login .icon,
+.btn-logout .icon {
+  font-size: 16px;
+}
+
+.auth-info {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.auth-info p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.auth-info p:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+.auth-info-success {
+  background-color: rgba(29, 185, 84, 0.2);
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.auth-info-success p {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.auth-info-success p strong {
+  font-weight: 600;
+  color: var(--spotify-green);
+}
+
+.auth-info-success p:first-child {
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+.auth-info-success p:last-child {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.auth-message {
+  display: none;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.auth-message-info {
+  background-color: rgba(29, 185, 84, 0.2);
+  color: var(--spotify-green);
+  border-left: 3px solid var(--spotify-green);
+}
+
+.auth-message-success {
+  background-color: rgba(29, 185, 84, 0.2);
+  color: var(--success);
+  border-left: 3px solid var(--success);
+}
+
+.auth-message-warning {
+  background-color: rgba(240, 130, 45, 0.2);
+  color: var(--warning);
+  border-left: 3px solid var(--warning);
+}
+
+.auth-message-error {
+  background-color: rgba(226, 33, 52, 0.2);
+  color: var(--error);
+  border-left: 3px solid var(--error);
+}
+
+/* Authentication State Indicators */
+.spotify-authenticated {
+  --current-state: 'authenticated';
+}
+
+.spotify-not-authenticated {
+  --current-state: 'not-authenticated';
+}
+
+/* When not authenticated, disable device selectors */
+.spotify-not-authenticated .disabled-when-not-auth {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.spotify-not-authenticated select,
+.spotify-not-authenticated input[type='range'] {
+  cursor: not-allowed;
+}

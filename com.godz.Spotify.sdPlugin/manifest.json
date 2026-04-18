@@ -1,0 +1,345 @@
+{
+  "SDKVersion": 1,
+  "Name": "Spotify",
+  "Description": "Control Spotify with professional UI and full device support",
+  "Icon": "static/icon/icon@2x",
+  "Version": "2.0.0",
+  "CodePathWin": "plugin/index.js",
+  "CodePathMac": "plugin/index.js",
+  "Author": "Godz Development",
+  "OS": [
+    {
+      "Platform": "windows",
+      "MinimumVersion": "7"
+    },
+    {
+      "Platform": "mac",
+      "MinimumVersion": "10.11"
+    }
+  ],
+  "Software": {
+    "MinimumVersion": "3.10.188.226"
+  },
+  "Category": "Spotify",
+  "CategoryIcon": "static/icon/icon@2x",
+  "URL": "https://github.com/godz",
+  "Nodejs": {
+    "Version": "20"
+  },
+  "Actions": [
+    {
+      "UUID": "com.godz.spotify.playpause",
+      "Icon": "static/icon/n1spotify_toggle_play_on_white@2x",
+      "Name": "Reproduzir/Pausar",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_play_pause",
+          "TitleAlignment": "center",
+          "FontSize": "8"
+        }
+      ],
+      "Settings": {
+        "titleFormat": "title-artist",
+        "timeDisplay": "elapsed",
+        "showTitle": true
+      },
+      "Controllers": ["Keypad", "Knob"],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Reproduzir ou pausar a música atual. Botão giratório: Anterior/Próximo",
+      "PropertyInspectorPath": "propertyInspector/playpause/index.html"
+    },
+    {
+      "UUID": "com.godz.spotify.previous",
+      "Icon": "static/icon/n1spotify_prev@2x",
+      "Name": "Anterior",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_prev",
+          "TitleAlignment": "center"
+        }
+      ],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Voltar para a música anterior",
+      "PropertyInspectorPath": "propertyInspector/previous/index.html"
+    },
+    {
+      "UUID": "com.godz.spotify.next",
+      "Icon": "static/icon/n1spotify_next@2x",
+      "Name": "Próximo",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_next",
+          "TitleAlignment": "center"
+        }
+      ],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Pular para a próxima música",
+      "PropertyInspectorPath": "propertyInspector/next/index.html"
+    },
+    {
+      "UUID": "com.godz.spotify.changedevice",
+      "Icon": "static/icon/n1spotify_device@2x",
+      "Name": "Mudar dispositivo",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_device",
+          "TitleAlignment": "center"
+        }
+      ],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Mudar o dispositivo de reprodução",
+      "PropertyInspectorPath": "propertyInspector/changedevice/index.html"
+    },
+    {
+      "UUID": "com.godz.spotify.likesong",
+      "Icon": "static/icon/n1spotify_like@2x",
+      "Name": "Adicionar aos favoritos",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_like",
+          "TitleAlignment": "center"
+        },
+        {
+          "Image": "static/btn/btn_spotify_144_unlike",
+          "TitleAlignment": "center"
+        }
+      ],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Adicionar ou remover a música dos favoritos",
+      "PropertyInspectorPath": "propertyInspector/likesong/index.html"
+    },
+    {
+      "UUID": "com.godz.spotify.playuri",
+      "Icon": "static/icon/n1spotify_play@2x",
+      "Name": "Reproduzir por URI",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_play",
+          "TitleAlignment": "center"
+        }
+      ],
+      "Settings": {
+        "playOption": "play"
+      },
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Reproduzir uma faixa ou álbum por URI do Spotify",
+      "PropertyInspectorPath": "propertyInspector/playuri/index.html"
+    },
+    {
+      "UUID": "com.godz.spotify.playplaylist",
+      "Icon": "static/icon/n1spotify_toggle_play_playlist_on_white@2x",
+      "Name": "Reproduzir playlist",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_play_playlist",
+          "TitleAlignment": "center"
+        }
+      ],
+      "Settings": {
+        "showCover": true
+      },
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Reproduzir uma playlist selecionada",
+      "PropertyInspectorPath": "propertyInspector/playplaylist/index.html"
+    },
+    {
+      "UUID": "com.godz.spotify.removeplaylistsong",
+      "Icon": "static/icon/n1spotify_remove_from_playlist@2x",
+      "Name": "Remover da playlist",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_remove_from_playlist",
+          "TitleAlignment": "center"
+        }
+      ],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Remover a música atual da playlist",
+      "PropertyInspectorPath": "propertyInspector/removeplaylistsong/index.html"
+    },
+    {
+      "UUID": "com.godz.spotify.addtoplaylist",
+      "Icon": "static/icon/n1spotify_save_to_playlist@2x",
+      "Name": "Adicionar à playlist",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_save_to_playlist",
+          "TitleAlignment": "center"
+        }
+      ],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Adicionar a música atual a uma playlist",
+      "PropertyInspectorPath": "propertyInspector/addtoplaylist/index.html"
+    },
+    {
+      "UUID": "com.godz.spotify.repeat",
+      "Icon": "static/icon/n1spotify_repeat@2x",
+      "Name": "Modo de repetição",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_repeat_off",
+          "TitleAlignment": "center"
+        },
+        {
+          "Image": "static/btn/btn_spotify_144_repeat_context",
+          "TitleAlignment": "center"
+        },
+        {
+          "Image": "static/btn/btn_spotify_144_repeat_track",
+          "TitleAlignment": "center"
+        }
+      ],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Alternar modo de repetição",
+      "PropertyInspectorPath": "propertyInspector/repeat/index.html"
+    },
+    {
+      "UUID": "com.godz.spotify.shuffle",
+      "Icon": "static/icon/n1spotify_toggle_shuffle_on_white@2x",
+      "Name": "Modo aleatório",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_shuffle_off",
+          "TitleAlignment": "center"
+        },
+        {
+          "Image": "static/btn/btn_spotify_144_shuffle",
+          "TitleAlignment": "center"
+        }
+      ],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Ativar ou desativar modo aleatório",
+      "PropertyInspectorPath": "propertyInspector/shuffle/index.html"
+    },
+    {
+      "UUID": "com.godz.spotify.songinfo",
+      "Icon": "static/icon/n1spotify_info@2x",
+      "Name": "Info da música",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_info",
+          "TitleAlignment": "center"
+        }
+      ],
+      "Settings": {
+        "mode": "title-artist"
+      },
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Copiar informações da música atual",
+      "PropertyInspectorPath": "propertyInspector/songinfo/index.html"
+    },
+    {
+      "UUID": "com.godz.spotify.volumeup",
+      "Icon": "static/icon/n1spotify_volume_up@2x",
+      "Name": "Aumentar volume",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_volume_up",
+          "TitleAlignment": "center",
+          "FontSize": "8"
+        }
+      ],
+      "Settings": {
+        "step": 10,
+        "show": true
+      },
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Aumentar o volume do Spotify",
+      "PropertyInspectorPath": "propertyInspector/volumeup/index.html"
+    },
+    {
+      "UUID": "com.godz.spotify.volumedown",
+      "Icon": "static/icon/n1spotify_volume_down@2x",
+      "Name": "Diminuir volume",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_volume_down",
+          "TitleAlignment": "center",
+          "FontSize": "8"
+        }
+      ],
+      "Settings": {
+        "step": 10,
+        "show": true
+      },
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Diminuir o volume do Spotify",
+      "PropertyInspectorPath": "propertyInspector/volumedown/index.html"
+    },
+    {
+      "UUID": "com.godz.spotify.volumecontrol",
+      "Icon": "static/icon/n1spotify_volume_set@2x",
+      "Name": "Definir volume",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_volume_set",
+          "TitleAlignment": "center",
+          "FontSize": "8"
+        }
+      ],
+      "Settings": {
+        "volume": 50,
+        "show": true
+      },
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Definir um volume específico",
+      "PropertyInspectorPath": "propertyInspector/volumecontrol/index.html"
+    },
+    {
+      "UUID": "com.godz.spotify.mute",
+      "Icon": "static/icon/n1spotify_volume_mute@2x",
+      "Name": "Controle de Volume",
+      "DisableAutomaticStates": true,
+      "States": [
+        {
+          "Image": "static/btn/btn_spotify_144_volume_set",
+          "TitleAlignment": "center",
+          "FontSize": "8"
+        },
+        {
+          "Image": "static/btn/btn_spotify_144_volume_mute",
+          "TitleAlignment": "center",
+          "FontSize": "8"
+        }
+      ],
+      "Settings": {
+        "step": 10,
+        "show": true
+      },
+      "Controllers": ["Keypad", "Knob"],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Girar para ajustar volume. Pressionar para silenciar/restaurar",
+      "PropertyInspectorPath": "propertyInspector/volumecontrol/index.html"
+    }
+  ]
+}
